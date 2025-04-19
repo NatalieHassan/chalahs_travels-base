@@ -1,0 +1,36 @@
+.logo-image{
+  width: 35%;
+  border-radius: 15%;
+  display: block;
+  max-width: 200%;
+  height: auto;
+  margin: 0 auto;
+  padding: 0.5em 0;
+  object-fit: contain;
+}
+
+
+.main-nav ul {
+  color: #000;
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+}
+.main-nav li {
+  list-style: none;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #191970;
+  font-weight: bold;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.main-nav a:hover {
+  color: #ffff66; /* Soft yellow hover */
+  border-bottom: 2px solid #f5fffa;
+}

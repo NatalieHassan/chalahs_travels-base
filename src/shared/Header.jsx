@@ -1,4 +1,6 @@
 import { NavLink } from "react-router-dom";
+// Import NavLink from react-router-dom for navigation links
+import './Header.css'; // Import CSS for styling
 
 
 function Header (){
@@ -9,13 +11,14 @@ function Header (){
     <div className="header-content">
       {/* Logo as home image */}
       <NavLink to="/" className="logo-link">
-        <img src="src/assets/images/logo_image.png" alt="Chalah's Travels logo" className="logo" width="200" />
+        <img src="src/assets/images/logo_image.png" alt="Chalah's Travels logo" className="logo-image"/>
+       
       </NavLink>
       {/* Navigation links */}
       <nav className="main-nav">
         <ul>
           <li><NavLink to="/signup">SIGN UP</NavLink></li>
-          <li><NavLink to="/about">ABOUT</NavLink></li>
+          <li><NavLink to="/about" >ABOUT</NavLink></li>
           <li><NavLink to={"/login"}>LOGIN</NavLink></li>
         </ul>
       </nav>

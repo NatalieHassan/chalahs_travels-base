@@ -1,0 +1,9 @@
+.logo-image {
+  width: 100%;
+  display: block;
+  max-width: 400%;
+  height: auto;
+  margin: 0 auto;
+  padding: 0.5em 0;
+  object-fit: contain;
+}
