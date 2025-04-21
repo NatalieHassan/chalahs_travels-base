@@ -1,9 +1,10 @@
 /* Footer.css */
 .site-footer{
-  width: 100%;
+  width: 100% ;
+  max-width: none ;
+  padding: 2rem 1rem;;
+  box-sizing: border-box;
   background-color: #9acd32;
-  padding: 2em 1rem;
-  border-radius: 15px;
   display: center ;
   align-items: center;
   min-height: 50px; /* Adjust based on image heights */
@@ -12,8 +13,9 @@
   display: flex;
   flex-direction: column;
   align-items: left;
-  width: 100%;
+  width: 100% ;
   height: 100%;
+  padding: 0 1rem;
 }
 
 .footer-image {
@@ -57,7 +59,7 @@
 
 .footer-nav a {
   text-decoration: none;
-  color: #191970;
+  color: #8B0000;
   font-weight: bold;
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }

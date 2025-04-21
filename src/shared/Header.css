@@ -1,16 +1,19 @@
 
 .site-header {
-  width: 100%;
-  margin-bottom: 5rem;
+  width: 100;
+  max-width: none;
+  padding: 0;
+  box-sizing: border-box;
+  margin-bottom: 10rem;
   background-color: #9acd32;
-  padding: 2rem 1rem;
-  border-radius: 15px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  min-height: 200px;
+  min-height: 100px;
   position: relative;
   z-index: 1000;
 }
 .header-content {
+  margin-left: 0;
+  margin-right: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -49,7 +52,7 @@
 
 .main-nav a {
   text-decoration: none;
-  color: #191970;
+  color: #8B0000;
   font-weight: bold;
   transition: color 0.3s ease, border-bottom 0.3s ease;
 }

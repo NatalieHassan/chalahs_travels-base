@@ -12,6 +12,7 @@ const Layout = () => {
         <Outlet /> {/* This will render the child routes-ABOUT PAGE */}
         {/* <Outlet /> will render the component for the current route */}
       </main>
+    
       {/* Fixes footer on every page */}
       <Footer />
     </div>
