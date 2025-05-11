@@ -13,12 +13,12 @@ const About = () => {
     }}>
       {/* Page-specific content */}
       <h1>About Chalah's Travels</h1>
-      <p>
+      <p style={ {fontSize: "1.5rem",}}>
         We help travelers with dietary restrictions find safe, delicious dining options worldwide.
       </p>
       <section>
         <h2 style={{textAlign: "center"}}>Our Mission</h2>
-        <p>
+        <p style={ {fontSize: "1.5rem",}}>
           To empower travelers by connecting them with restaurants that cater to kosher, halal, gluten-free, and other dietary needs.
         </p>
       </section>
