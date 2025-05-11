@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import '../shared/FormStyles.css';
 
 const Login = () => {
   // State variables for email
@@ -19,11 +20,11 @@ const Login = () => {
   }
   // Handle login logic here
   return (
-    <div className="login">
+    <div className="form-container">
       <h1>Login</h1>
       {error && <p className="error">{error}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -33,7 +34,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -48,7 +49,5 @@ const Login = () => {
     </div>
   )
 }
-
-
 
 export default Login

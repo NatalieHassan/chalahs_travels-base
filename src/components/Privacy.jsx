@@ -9,11 +9,11 @@ const Privacy = () => {
       </p>
       <h2>Information We Collect</h2>
       <p>
-        We may collect personal information such as your name, email address, and phone number when you create an account or make a booking. We also collect non-personal information such as your IP address and browsing behavior to improve our services.
+        We may collect personal information such as your name, email address, and phone number when you create an account or locate nearby restaurants. We also collect non-personal information such as your IP address and browsing behavior to improve our services.
       </p>
       <h2>How We Use Your Information</h2>
       <p>
-        We use your information to process bookings, communicate with you, and improve our services. We may also use your information for marketing purposes, but you can opt-out at any time.
+        We use your information to locate eateries, communicate with you, and improve our services. We may also use your information for marketing purposes, but you can opt-out at any time.
       </p>
       <h2>Data Security</h2>
       <p>

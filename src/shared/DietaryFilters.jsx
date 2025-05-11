@@ -1,8 +1,9 @@
 import {useState} from 'react';
+import PropTypes from 'prop-types';
 
 
 const DietaryFilters = ({onFiltersChange}) => {
-  const [filters, setFilters] = useState([])
+  const [filters, setFilters] = useState([]);
 
   const dietaryOptions = [
     { id: 'vegetarian', label: 'Vegetarian' },
@@ -15,12 +16,11 @@ const DietaryFilters = ({onFiltersChange}) => {
     { id: 'shellfish-free', label: 'Shellfish-Free' },
   ];
   const handleFilterToggle = (filterId) => {
-    setFilters(prev => 
-      prev.includes(filterId) 
-        ? prev.filter(id => id !== filterId) 
-        : [...prev, filterId]
-    );
-    onFiltersChange(filters)
+    const updatedFilters = filters.includes(filterId)
+      ? filters.filter(id => id !== filterId)
+      : [...filters, filterId];
+    setFilters(updatedFilters);
+    onFiltersChange(updatedFilters);
   };
   return (
     <div>
@@ -41,5 +41,9 @@ const DietaryFilters = ({onFiltersChange}) => {
     </div>
   )
 }
+
+DietaryFilters.propTypes = {
+  onFiltersChange: PropTypes.func.isRequired,
+};
 
 export default DietaryFilters

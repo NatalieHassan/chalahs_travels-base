@@ -47,6 +47,7 @@ function Header (){
       {/* Desktop Navigation links */}
       <nav className="desktop-nav main-nav">
         <ul>
+          <li><NavLink to="/search">SEARCH</NavLink></li>
           <li><NavLink to="/signup">SIGN UP</NavLink></li>
           <li><NavLink to="/about" >ABOUT</NavLink></li>
           <li><NavLink to={"/login"}>LOGIN</NavLink></li>
@@ -59,10 +60,17 @@ function Header (){
         <ul>
           <li>
           <NavLink 
-          to="/signup" 
-          className={({ isActive }) => isActive ? "active" : "/signup"} 
-          onClick={() => setIsMenuOpen(false)}>SIGN UP
+          to="/search" 
+          className={({ isActive }) => isActive ? "active" : ""}
+          onClick={() => setIsMenuOpen(false)}>SEARCH
           </NavLink> 
+          </li>
+          <li>
+          <NavLink 
+          to="/signup" 
+          className={({ isActive }) => isActive ? "active" : ""}
+          onClick={() => setIsMenuOpen(false)}>SIGN UP
+          </NavLink>
           </li>
           <li>
           <NavLink 
@@ -72,7 +80,9 @@ function Header (){
           </NavLink>
           </li>
           <li>
-          <NavLink to={"/login" } >LOGIN</NavLink></li>
+          <NavLink to={"/login" } 
+          className={({ isActive }) => isActive ? "active" : ""}
+          onClick={() => setIsMenuOpen(false)}>LOGIN</NavLink></li>
          </ul>
        </nav>
       )}
