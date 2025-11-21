@@ -1,4 +1,5 @@
-import {useState} from 'react';
+import { useState } from 'react';
+import { login } from '../services/api';
 import '../shared/FormStyles.css';
 
 const Login = () => {
@@ -9,20 +10,33 @@ const Login = () => {
   // State variable for error message
   const [error, setError] = useState('');
   // State variable for success message
-  const handleSubmit = (e) => {
+  const [success, setSuccess] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
+
     if (email === '' || password === '') {
       setError('Please fill in all fields');
       return;
     }
-    // Handle login logic here
-    console.log('Logging in with:', { email, password });
+
+    try {
+      const data = await login(email, password);
+      setSuccess('Login successful!');
+      console.log('User logged in:', data);
+      // Here you would typically store the token and redirect
+    } catch (err) {
+      setError(err.message || 'Login failed. Please check your credentials.');
+    }
   }
-  // Handle login logic here
+
   return (
     <div className="form-container">
       <h1>Login</h1>
       {error && <p className="error">{error}</p>}
+      {success && <p className="success" style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
