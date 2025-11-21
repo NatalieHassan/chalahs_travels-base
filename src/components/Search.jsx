@@ -1,69 +1,72 @@
-
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
+import SearchBar from '../shared/SearchBar';
+import DietaryFilters from '../shared/DietaryFilters';
+import { getRestaurants } from '../services/api';
+import './Search.css';
 
 const Search = () => {
   const [location, setLocation] = useState('');
   const [selectedFilters, setSelectedFilters] = useState([]);
+  const [restaurants, setRestaurants] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const dietaryOptions = [
-    { id: 'vegetarian', label: 'Vegetarian' },
-    { id: 'vegan', label: 'Vegan' },
-    { id: 'gluten-free', label: 'Gluten-Free' },
-    { id: 'kosher', label: 'Kosher' },
-    { id: 'halal', label: 'Halal' },
-    { id: 'nut-free', label: 'Nut-Free' },
-    { id: 'dairy-free', label: 'Dairy-Free' },
-    { id: 'shellfish-free', label: 'Shellfish-Free' },
-  ];
+  useEffect(() => {
+    const fetchRestaurants = async () => {
+      if (!location && selectedFilters.length === 0) return;
 
-  const handleFilterToggle = (filterId) => {
-    setSelectedFilters(prev => 
-      prev.includes(filterId) 
-        ? prev.filter(id => id !== filterId) 
-        : [...prev, filterId]
-    );
+      setLoading(true);
+      setError(null);
+      try {
+        const data = await getRestaurants(location, selectedFilters);
+        setRestaurants(data);
+      } catch {
+        setError('Failed to fetch restaurants. Please try again.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    const debounceTimer = setTimeout(() => {
+      fetchRestaurants();
+    }, 500); // Debounce API calls
+
+    return () => clearTimeout(debounceTimer);
+  }, [location, selectedFilters]);
+
+  const handleSearch = (searchTerm) => {
+    setLocation(searchTerm);
   };
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Search logic would go here
+  const handleFiltersChange = (filters) => {
+    setSelectedFilters(filters);
   };
 
   return (
     <div className="search">
       <h2>Find Restaurants</h2>
-      <form onSubmit={handleSearch}>
-        <div className="search-bar">
-          <input
-            type="text"
-            placeholder="Enter location"
-            value={location}
-            onChange={(e) => setLocation(e.target.value)}
-          />
-          <button type="submit">Search</button>
-        </div>
-        
-        <div className="dietary-filters">
-          <h3>Dietary Restrictions</h3>
-          <div className="filters-grid">
-            {dietaryOptions.map(option => (
-              <div key={option.id} className="filter-option">
-                <input
-                  type="checkbox"
-                  id={option.id}
-                  checked={selectedFilters.includes(option.id)}
-                  onChange={() => handleFilterToggle(option.id)}
-                />
-                <label htmlFor={option.id}>{option.label}</label>
-              </div>
-            ))}
-          </div>
-        </div>
-      </form>
+      <SearchBar onSearch={handleSearch} />
+      <DietaryFilters onFiltersChange={handleFiltersChange} />
+
+      {loading && <p>Loading...</p>}
+      {error && <p className="error">{error}</p>}
+
+      <div className="restaurant-list">
+        {restaurants.length > 0 ? (
+          restaurants.map((restaurant) => (
+            <div key={restaurant.id} className="restaurant-card">
+              <h3>{restaurant.name}</h3>
+              <p>{restaurant.cuisine}</p>
+              <p>{restaurant.address}</p>
+            </div>
+          ))
+        ) : (
+          !loading && (location || selectedFilters.length > 0) && <p>No restaurants found.</p>
+        )}
+      </div>
     </div>
   );
 };
 
 export default Search;
-// src/components/Search.jsx
+

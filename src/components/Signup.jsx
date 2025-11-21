@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
+import '../shared/FormStyles.css'
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -21,63 +22,61 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup">
-      <main className="user-email-container">
-        <h1>Create Account</h1>
-        <p>Please fill in the details below to create your account.</p>
+    <div className="form-container">
+      <h1>Create Account</h1>
+      <p>Please fill in the details below to create your account.</p>
+      
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="name">Full Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
+        </div>
         
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="name">Full Name</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          
-          <div className="form-group">
-            <label htmlFor="confirmPassword">Confirm Password</label>
-            <input
-              type="password"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-            />
-          </div>
-          
-          <button type="submit">Create Account</button>
-        </form>
-      </main>
+        <div className="form-group">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        
+        <button type="submit">Create Account</button>
+      </form>
     </div>
   );
 };

@@ -1,26 +1,44 @@
-import React from 'react'
+import { useState } from 'react';
+import { login } from '../services/api';
+import '../shared/FormStyles.css';
 
 const Login = () => {
-  const [email, setEmail] = React.useState('');
-  const [password, setPassword] = React.useState('');
-  const [error, setError] = React.useState('');
-  
-  const handleSubmit = (e) => {
+  // State variables for email
+  const [email, setEmail] = useState('');
+  // State variable for password
+  const [password, setPassword] = useState('');
+  // State variable for error message
+  const [error, setError] = useState('');
+  // State variable for success message
+  const [success, setSuccess] = useState('');
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError('');
+    setSuccess('');
+
     if (email === '' || password === '') {
       setError('Please fill in all fields');
       return;
     }
-    // Handle login logic here
-    console.log('Logging in with:', { email, password });
+
+    try {
+      const data = await login(email, password);
+      setSuccess('Login successful!');
+      console.log('User logged in:', data);
+      // Here you would typically store the token and redirect
+    } catch (err) {
+      setError(err.message || 'Login failed. Please check your credentials.');
+    }
   }
-  // Handle login logic here
+
   return (
-    <div className="login">
+    <div className="form-container">
       <h1>Login</h1>
       {error && <p className="error">{error}</p>}
+      {success && <p className="success" style={{ color: 'green' }}>{success}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label htmlFor="email">Email:</label>
           <input
             type="email"
@@ -30,7 +48,7 @@ const Login = () => {
             required
           />
         </div>
-        <div>
+        <div className="form-group">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
@@ -45,7 +63,5 @@ const Login = () => {
     </div>
   )
 }
-
-
 
 export default Login

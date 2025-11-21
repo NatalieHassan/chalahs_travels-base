@@ -1,19 +1,18 @@
-import React from 'react';
-import Header from './Header';  // Adjust import paths as needed
-import Footer from './footer';  // Adjust import paths as needed
+import {Outlet} from 'react-router-dom';
+import Header from './Header.jsx';  // Adjust import paths as needed
+import Footer from './Footer.jsx';  // Adjust import paths as needed
 
 // Layout wraps all page content with consistent structure
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
     <div className="layout">
-      {/* Fixe header on every page */}
+      {/* Fixes header on every page */}
       <Header />
-
-      {/* Dynamic content from each page */}
       <main className="layout-content">
-        {children}
+        <Outlet /> {/* This will render the child routes-ABOUT PAGE */}
+        {/* <Outlet /> will render the component for the current route */}
       </main>
-
+    
       {/* Fixes footer on every page */}
       <Footer />
     </div>
