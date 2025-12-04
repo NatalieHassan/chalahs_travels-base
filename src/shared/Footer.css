@@ -5,8 +5,9 @@
   padding: 2rem 1rem;;
   box-sizing: border-box;
   background-color: #9acd32;
-  display: center ;
+  display: flex;
   align-items: center;
+  justify-content: center;
   min-height: 50px; /* Adjust based on image heights */
 }
 .footer-content {
@@ -22,9 +23,12 @@
   border-radius: 15%;
   height: 150px;
   width: auto;
+  min-width: 80px;
   display: block;
   object-fit: contain;
   max-width: 100%;
+  visibility: visible;
+  opacity: 1;
 }
 
 /* Glow Effect for All Images */

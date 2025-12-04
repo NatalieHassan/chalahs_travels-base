@@ -33,10 +33,13 @@
 .header-image {
   height: 250px;
   width: auto;
+  min-width: 100px;
   border-radius: 15%;
   display: block;
   object-fit: contain;
   max-width: 100%;
+  visibility: visible;
+  opacity: 1;
 }
 
 .main-nav ul {
