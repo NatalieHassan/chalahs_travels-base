@@ -26,7 +26,7 @@ export const getRestaurants = async (location, filters = []) => {
     const response = await fetch(`${API_BASE_URL}/restaurants?${queryParams.toString()}`);
     return handleResponse(response);
   } catch (error) {
-    console.error('Error fetching restaurants:', error);
+    // Error is re-thrown to be handled by the calling component
     throw error;
   }
 };
@@ -48,7 +48,7 @@ export const login = async (email, password) => {
     });
     return handleResponse(response);
   } catch (error) {
-    console.error('Login error:', error);
+    // Error is re-thrown to be handled by the calling component
     throw error;
   }
 };

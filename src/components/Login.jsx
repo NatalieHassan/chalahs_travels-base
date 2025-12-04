@@ -25,8 +25,8 @@ const Login = () => {
     try {
       const data = await login(email, password);
       setSuccess('Login successful!');
-      console.log('User logged in:', data);
       // Here you would typically store the token and redirect
+      // Token storage and redirect logic would go here
     } catch (err) {
       setError(err.message || 'Login failed. Please check your credentials.');
     }
