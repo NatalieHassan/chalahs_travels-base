@@ -2,6 +2,10 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 // Import NavLink from react-router-dom for navigation links
 import './Header.css'; // Import CSS for styling
+// Import images
+import wineDinnerLogoA from '../assets/images/wine-dinner-logo-a.jpeg';
+import logoImage from '../assets/images/logo_image.png';
+import wineDinnerLogoB from '../assets/images/wine-dinner-logo-b.jpeg';
 
 
 function Header (){
@@ -20,15 +24,15 @@ function Header (){
       {/* The images are wrapped in NavLink for navigation */}
       <div className="header-image-group">
        <NavLink to="/" className="header-image-link">
-        <img src="src/assets/images/wine-dinner-logo-a.jpeg" alt="Pasta dineer plate" className="header-image"/>
+        <img src={wineDinnerLogoA} alt="Pasta dinner plate" className="header-image"/>
         </NavLink>
 
         <NavLink to="/" className="header-image-link">
-        <img src="src/assets/images/logo_image.png" alt="Chalah's Travels logo" className="header-image"/>
+        <img src={logoImage} alt="Chalah's Travels logo" className="header-image"/>
         </NavLink>
 
         <NavLink to="/" className="header-image-link">
-        <img src="src/assets/images/wine-dinner-logo-b.jpeg" alt="plate and wine dinner image" className="header-image"/>
+        <img src={wineDinnerLogoB} alt="Plate and wine dinner image" className="header-image"/>
       </NavLink>
       </div>
 

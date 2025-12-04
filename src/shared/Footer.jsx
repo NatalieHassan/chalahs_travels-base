@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import './Footer.css'; // Import CSS for styling
+// Import images
+import dinnerLogo from '../assets/images/dinner_logo.png';
+import logoImageFooter from '../assets/images/logo_image_footer.png';
 
 function Footer(){
 
@@ -14,15 +17,15 @@ function Footer(){
       {/* The images are wrapped in NavLink for navigation */}
       <div className="footer-image-group">
         <NavLink to="/" className="footer-image-link">
-        <img src="src/assets/images/dinner_logo.png" alt="Footer logo" className="footer-image"/>
+        <img src={dinnerLogo} alt="Footer logo" className="footer-image"/>
          </NavLink>
 
          <NavLink to="/" className="footer-image-link">
-         <img src="src/assets/images/logo_image_footer.png" alt="Footer logo" className="footer-image"/>
+         <img src={logoImageFooter} alt="Footer logo" className="footer-image"/>
          </NavLink>
 
          <NavLink to="/" className="footer-image-link">
-         <img src="src/assets/images/dinner_logo.png" alt="Footer logo" className="footer-image"/>
+         <img src={dinnerLogo} alt="Footer logo" className="footer-image"/>
         
         </NavLink>
       </div>
