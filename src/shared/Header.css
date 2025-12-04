@@ -1,6 +1,6 @@
 
 .site-header {
-  width: 100;
+  width: 100%;
   max-width: none;
   padding: 0;
   box-sizing: border-box;
@@ -34,7 +34,9 @@
   height: 250px;
   width: auto;
   border-radius: 15%;
-
+  display: block;
+  object-fit: contain;
+  max-width: 100%;
 }
 
 .main-nav ul {
