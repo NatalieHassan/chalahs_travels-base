@@ -23,7 +23,7 @@ const Home = () => {
       justifyContent: "center",
     }}>
      
-      <h1 style={homeStyle()}>Welcome to Chalah's Travels</h1>
+      <h1 style={homeStyle()}>Welcome to Chalah's Travels 🌍</h1>
 
       <h2 style={{color:"#8B0000", fontSize: "2.0rem"}}>Discover restaurants that match your dietary needs.</h2>
       <p style={{color: "#304412", fontSize: "1.5rem", textAlign: "center"}}>We understand that finding the right place to eat can be challenging, especially when you have specific dietary requirements. Our platform is designed to help you discover restaurants that cater to your needs.
