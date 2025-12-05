@@ -1,6 +1,9 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// Generate a unique build ID to force cache invalidation
+const BUILD_ID = process.env.VERCEL_GIT_COMMIT_SHA?.slice(0, 7) || Date.now().toString(36)
+
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
@@ -9,10 +12,10 @@ export default defineConfig({
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        // Standard hash-based naming (Vite will generate new hash if content changes)
-        entryFileNames: `assets/index-[hash].js`,
-        chunkFileNames: `assets/[name]-[hash].js`,
-        assetFileNames: `assets/[name]-[hash].[ext]`
+        // Include build ID in filename to force cache invalidation
+        entryFileNames: `assets/index-[hash]-${BUILD_ID}.js`,
+        chunkFileNames: `assets/[name]-[hash]-${BUILD_ID}.js`,
+        assetFileNames: `assets/[name]-[hash]-${BUILD_ID}.[ext]`
       }
     }
   }
