@@ -5,13 +5,14 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Force new build hash by adding timestamp
+    // Disable build cache to force fresh builds
+    emptyOutDir: true,
     rollupOptions: {
       output: {
-        // This ensures each build gets a unique hash
-        entryFileNames: `assets/index-[hash].js`,
-        chunkFileNames: `assets/[name]-[hash].js`,
-        assetFileNames: `assets/[name]-[hash].[ext]`
+        // Force new hash on every build
+        entryFileNames: `assets/index-[hash]-${Date.now()}.js`,
+        chunkFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
+        assetFileNames: `assets/[name]-[hash]-${Date.now()}.[ext]`
       }
     }
   }
