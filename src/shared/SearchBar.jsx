@@ -3,9 +3,13 @@ import './FormStyles.css';
 
 const SearchBar = ({ onSearch }) => {
   const [location, setLocation] = useState('');
+  
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSearch(location);
+    // Only trigger search if location has at least 3 characters (saves API calls)
+    if (location.trim().length >= 3) {
+      onSearch(location.trim());
+    }
   };
 
   return (

@@ -20,6 +20,11 @@ const Search = () => {
         return;
       }
 
+      // Prevent API call if location is too short (saves API calls)
+      if (location.trim().length < 3) {
+        return;
+      }
+
       setLoading(true);
       setError(null);
       
@@ -40,10 +45,10 @@ const Search = () => {
       }
     };
 
-    // Debounce API calls to avoid excessive requests
+    // Increased debounce to 1000ms (1 second) to reduce API calls during typing
     const debounceTimer = setTimeout(() => {
       fetchRestaurants();
-    }, 500);
+    }, 1000); // Increased from 500ms to save API calls
 
     return () => clearTimeout(debounceTimer);
   }, [location, selectedFilters]);
