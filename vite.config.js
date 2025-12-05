@@ -5,14 +5,14 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   build: {
-    // Disable build cache to force fresh builds
+    // Force fresh builds - empty output directory
     emptyOutDir: true,
     rollupOptions: {
       output: {
-        // Force new hash on every build
-        entryFileNames: `assets/index-[hash]-${Date.now()}.js`,
-        chunkFileNames: `assets/[name]-[hash]-${Date.now()}.js`,
-        assetFileNames: `assets/[name]-[hash]-${Date.now()}.[ext]`
+        // Standard hash-based naming (Vite will generate new hash if content changes)
+        entryFileNames: `assets/index-[hash].js`,
+        chunkFileNames: `assets/[name]-[hash].js`,
+        assetFileNames: `assets/[name]-[hash].[ext]`
       }
     }
   }

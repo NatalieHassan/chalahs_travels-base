@@ -1,7 +1,7 @@
 /**
  * Google Places API Service
  * Handles restaurant searches using Google Places API
- * Version: 2.1 - Force complete rebuild
+ * Version: 2.2 - Final cache fix
  */
 
 const GOOGLE_PLACES_API_KEY = import.meta.env.VITE_GOOGLE_PLACES_API_KEY;
