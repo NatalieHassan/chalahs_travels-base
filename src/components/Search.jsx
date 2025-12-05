@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import SearchBar from '../shared/SearchBar';
 import DietaryFilters from '../shared/DietaryFilters';
-import { getRestaurants } from '../services/api';
+import { searchRestaurants } from '../services/googlePlaces';
 import './Search.css';
 
 const Search = () => {
@@ -13,23 +13,37 @@ const Search = () => {
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      if (!location && selectedFilters.length === 0) return;
+      // Don't search if no location is provided
+      if (!location || location.trim() === '') {
+        setRestaurants([]);
+        setError(null);
+        return;
+      }
 
       setLoading(true);
       setError(null);
+      
       try {
-        const data = await getRestaurants(location, selectedFilters);
+        const data = await searchRestaurants(location, selectedFilters);
         setRestaurants(data);
-      } catch {
-        setError('Failed to fetch restaurants. Please try again.');
+        if (data.length === 0 && location) {
+          setError(null); // Clear error if it's just no results
+        }
+      } catch (err) {
+        // Show the actual error message for debugging
+        const errorMessage = err.message || 'Failed to fetch restaurants. Please try again.';
+        setError(errorMessage);
+        setRestaurants([]);
+        console.error('Search error details:', err);
       } finally {
         setLoading(false);
       }
     };
 
+    // Debounce API calls to avoid excessive requests
     const debounceTimer = setTimeout(() => {
       fetchRestaurants();
-    }, 500); // Debounce API calls
+    }, 500);
 
     return () => clearTimeout(debounceTimer);
   }, [location, selectedFilters]);
@@ -48,7 +62,7 @@ const Search = () => {
       <SearchBar onSearch={handleSearch} />
       <DietaryFilters onFiltersChange={handleFiltersChange} />
 
-      {loading && <p>Loading...</p>}
+      {loading && <p className="loading">Searching for restaurants...</p>}
       {error && <p className="error">{error}</p>}
 
       <div className="restaurant-list">
@@ -56,12 +70,23 @@ const Search = () => {
           restaurants.map((restaurant) => (
             <div key={restaurant.id} className="restaurant-card">
               <h3>{restaurant.name}</h3>
-              <p>{restaurant.cuisine}</p>
-              <p>{restaurant.address}</p>
+              {restaurant.rating && (
+                <p className="rating">⭐ {restaurant.rating.toFixed(1)}</p>
+              )}
+              {restaurant.cuisine && <p className="cuisine">{restaurant.cuisine}</p>}
+              <p className="address">{restaurant.address}</p>
+              {restaurant.photos && restaurant.photos.length > 0 && (
+                <img 
+                  src={restaurant.photos[0]} 
+                  alt={restaurant.name}
+                  className="restaurant-photo"
+                  loading="lazy"
+                />
+              )}
             </div>
           ))
         ) : (
-          !loading && (location || selectedFilters.length > 0) && <p>No restaurants found.</p>
+          !loading && location && <p className="no-results">No restaurants found. Try a different location or adjust your filters.</p>
         )}
       </div>
     </div>
